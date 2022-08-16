@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import calculateWinner from "../utils";
 import Board from "./Board";
-import Move from "./Move";
+import Moves from "./Moves";
 
 function Game(props) {
 
@@ -40,7 +40,7 @@ function Game(props) {
           </div>
           <div className="game-info">
             <div>{status}</div>
-            <Move
+            <Moves
             history={history}
             setStepNumber={setStepNumber}
             setIsXNext={setIsXNext}
