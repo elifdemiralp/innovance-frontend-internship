@@ -3,7 +3,7 @@ import { useTakeTurn } from "../game-context";
 const Square = ({ value, index }) => {
 const takeTurn = useTakeTurn(index);
   return (
-    <button className="square" onClick={() => takeTurn(index)}>
+    <button className="square" onClick={takeTurn}>
       {value}
     </button>
   );

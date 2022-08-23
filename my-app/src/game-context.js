@@ -24,7 +24,7 @@ export const useHistory = () => {
     return context.history;
 };
 
-export const useTakeTurn = () => {
+export const useTakeTurn = (i) => {
     const context = React.useContext(GameContext);
     
     if (context === undefined) {
@@ -33,7 +33,7 @@ export const useTakeTurn = () => {
 
     const { isXNext, setIsXNext, stepNumber, setStepNumber, history, setHistory } = context;
 
-    const takeTurn = (i) => {
+    const takeTurn = () => {
         const winner = calculateWinner(history[stepNumber]);
         const historyPoint = history.slice(0, stepNumber + 1);
         const current = historyPoint[stepNumber];
