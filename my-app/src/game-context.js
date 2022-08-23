@@ -18,7 +18,7 @@ export function GameProvider ({children}) {
 export const useHistory = () => {
     const context = React.useContext(GameContext);
     if (context === undefined) {
-        throw new Error('useCount must be used within a GameProvider')
+        throw new Error('useHistory must be used within a GameProvider')
     };
 
     return context.history;
@@ -28,7 +28,7 @@ export const useTakeTurn = () => {
     const context = React.useContext(GameContext);
     
     if (context === undefined) {
-        throw new Error('useCount must be used within a GameProvider')
+        throw new Error('useTakeTurn must be used within a GameProvider')
     };
 
     const { isXNext, setIsXNext, stepNumber, setStepNumber, history, setHistory } = context;

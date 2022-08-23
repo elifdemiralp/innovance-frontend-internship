@@ -1,7 +1,9 @@
 import React from "react";
-const Square = ({ value, onClick }) => {
+import { useTakeTurn } from "../game-context";
+const Square = ({ value, index }) => {
+const takeTurn = useTakeTurn(index);
   return (
-    <button className="square" onClick={onClick}>
+    <button className="square" onClick={() => takeTurn(index)}>
       {value}
     </button>
   );

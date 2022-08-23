@@ -1,4 +1,3 @@
-
 import React, { useContext } from "react";
 import calculateWinner from "../utils";
 import Board from "./Board";
