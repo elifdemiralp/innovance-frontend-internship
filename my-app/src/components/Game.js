@@ -1,53 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import calculateWinner from "../utils";
 import Board from "./Board";
 import Moves from "./Moves";
+import { GameContext, useHistory } from "../game-context";
 
-function Game(props) {
-
-    const [history, setHistory] = useState([Array(9).fill(null)]);
-    const [stepNumber, setStepNumber] = useState(0);
-    const [isXNext, setIsXNext] = useState(true);
-    const winner = calculateWinner(history[stepNumber]);
-  
-    const handleClick = (i) => {
-      const historyPoint = history.slice(0, stepNumber + 1);
-      const current = historyPoint[stepNumber];
-      const squares = [...current];
-
-      if (winner || squares[i]) {
-        return;
-      }
-      squares[i] = isXNext ? "X" : "O";
-      setHistory([...historyPoint, squares]);
-      setStepNumber(historyPoint.length);
-      setIsXNext(!isXNext);
-    }
-      let status;
-      if (winner) {
-        status = "Winner: " + winner;
-      } else {
-        status = "Next player: " + (isXNext ? "X" : "O");
-      }
-  
-      return (
-        <div className="game">
-          <div className="game-board">
-            <Board
-              squares={history[stepNumber]}
-              onClick={handleClick}
-            />
-          </div>
-          <div className="game-info">
-            <div>{status}</div>
-            <Moves
-            history={history}
-            setStepNumber={setStepNumber}
-            setIsXNext={setIsXNext}
-            />
-          </div>
+const Game = () => {
+  const history = useHistory();
+  const { stepNumber, isXNext } = useContext(GameContext);
+  const winner = calculateWinner(history[stepNumber]);
+  const nextPlayer = isXNext ? "X" : "O";
+  return (
+      <div className="game">
+        <div className="game-board">
+          <Board/>
         </div>
-      );
-}
-
+        <div className="game-info">
+          <h3>History</h3>
+          <h3>{winner ? "Winner: " + winner : "Next Player: " + nextPlayer}</h3>
+          <Moves />
+        </div>
+      </div>
+  );
+};
 export default Game;

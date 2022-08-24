@@ -6,6 +6,18 @@ body {
   ol, ul {
     padding-left: 30px;
   }
+
+  .board {
+    clear: both;
+    content: "";
+    display: table;
+    border: 0;
+    background: #fff;
+    width: 99px;
+    height: 99px;
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  }
   
   .board-row:after {
     clear: both;
