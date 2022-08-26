@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "./styles.css";
 import { FaMagic } from 'react-icons/fa';
+import Answer from "./components/Answer";
 
 
 
@@ -15,7 +16,22 @@ function App() {
     const handleChange = (e) => {
       setQuestion(e.target.value);
     }
+
+    const fetchData = async () => {
     
+      const response = await fetch("https://yesno.wtf/api");
+    
+      if(!response.ok){
+        setIsLoading(false);
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setAnswer(data.answer);
+      setImageSrc(data.image);
+      setIsLoading(false);
+    }
+
     const handleSubmit = (e) => {
       e.preventDefault();
       if(question.slice(-1) !== '?' || question === ""){
@@ -26,19 +42,7 @@ function App() {
         setErrorMeessage("");
         setIsLoading(true);
         setAnswer("");
-        fetch("https://yesno.wtf/api")
-          .then((response) => response.json())
-          .then((data) => {
-            setAnswer(data.answer);
-            setImageSrc(data.image);
-            setIsLoading(false);
-            console.log(data);
-          }).catch((error) => {
-            setErrorMeessage("Error: " + error.message);
-            setIsLoading(false);
-            console.log(error);
-          }
-          );
+        fetchData();
       }
     }
 
@@ -54,9 +58,7 @@ function App() {
         {isLoading ? <p>Loading...</p> : null}
         {answer ? 
           <div>
-          <p>Q: {question}</p>
-           <p>A: {answer} </p>
-           <img src={imageSrc} alt=""></img>
+          <Answer question={question} answer={answer} imageSrc={imageSrc}></Answer>
          </div>
         : null}
       </form>
