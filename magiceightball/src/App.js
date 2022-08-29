@@ -3,8 +3,7 @@ import { useState } from "react";
 import "./styles.css";
 import { FaMagic } from 'react-icons/fa';
 import Answer from "./components/Answer";
-
-
+import {StyledBody, StyledButton, StyledInput, StyledQuestion, StyledTitle} from "./styles";
 
 function App() {
     const [question, setQuestion] = useState("");
@@ -47,13 +46,13 @@ function App() {
     }
 
   return (
-    <div className="App">
-      <h1 className="pTitle pAnimation">Magic 8 Ball <FaMagic></FaMagic></h1> 
-      <h2 className="pQuestion">Ask your question.</h2>
+    <StyledBody>
+      <StyledTitle>Magic 8 Ball <FaMagic></FaMagic> </StyledTitle> 
+      <StyledQuestion>Ask your question.</StyledQuestion>
       <form onSubmit={handleSubmit}>
-        <input className="input" type="text" onChange={handleChange} placeholder=""/>
+      <StyledInput className="input" type="text" onChange={handleChange} placeholder=""/>
         <br></br>
-        <button className="" type="submit">Ask!</button>
+        <StyledButton className="" type="submit">Ask!</StyledButton>
         {errorMessage ? <p>{errorMessage}</p> : null}
         {isLoading ? <p>Loading...</p> : null}
         {answer ? 
@@ -62,7 +61,7 @@ function App() {
          </div>
         : null}
       </form>
-    </div>
+    </StyledBody>
   );
 }
 
