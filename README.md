@@ -12,9 +12,9 @@ Finished certifications is checked:
 
 Tic-tac-toe tutorial game is built and its source code [here](/my-app/). Implementation goals:
  - [X] With class components
- - [ ] With functional components + hooks
- - [ ] With addition Context API for state management
- - [ ] With addition Typescript
+ - [X] With functional components + hooks
+ - [X] With addition Context API for state management
+ - [X] With addition Typescript
  - [ ] Writing few tests
 
 ## A Beginners Guide to React Introduction
